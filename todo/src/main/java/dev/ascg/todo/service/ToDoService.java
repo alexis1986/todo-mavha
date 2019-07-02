@@ -1,14 +1,16 @@
 package dev.ascg.todo.service;
 
+import java.util.List;
+
 import dev.ascg.todo.model.Status;
 import dev.ascg.todo.model.ToDo;
 
 public interface ToDoService {
-	public Iterable<ToDo> findAll();
+	public List<ToDo> findAll();
 	
-	public Iterable<ToDo> findBy(Integer id, String description, Status status);
+	public List<ToDo> findBy(Integer id, String description, Status status);
 	
-	public void create(String description, Status status, byte[] image);
+	public ToDo create(String description, String image);
 	
-	public void resolve(ToDo todo);
+	public ToDo resolve(Integer id);
 }

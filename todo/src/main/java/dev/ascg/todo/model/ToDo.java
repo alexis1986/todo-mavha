@@ -21,7 +21,7 @@ public class ToDo {
 	@Column(name = "status")
 	private Status status;
 	@Column(name = "image")
-	private byte[] image;
+	private String image;
 
 	public Integer getId() {
 		return id;
@@ -47,11 +47,11 @@ public class ToDo {
 		this.status = status;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
