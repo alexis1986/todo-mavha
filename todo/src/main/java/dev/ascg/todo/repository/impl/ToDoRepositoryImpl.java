@@ -11,6 +11,7 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import dev.ascg.todo.model.Status;
@@ -35,7 +36,7 @@ public class ToDoRepositoryImpl implements ToDoRepositoryCustom{
         	predicates.add(cb.equal(idPath, id));
         }
         
-        if (description != null) {
+        if (StringUtils.isNotEmpty(description)) {
         	Path<String> descriptionPath = todo.get("description");
         	predicates.add(cb.like(descriptionPath, description));
         }

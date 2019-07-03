@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>ToDo App</h1>
+
+    <div class="search">
+        <div class="header">
+            <h3>Buscador</h3>
+        </div>
+        <div class="body">
+            <input type="text" name="id" placeholder="Id" [(ngModel)]="id" (change)="search()">
+            <input type="text" name="description" [(ngModel)]="description" placeholder="Descripcion"
+                (change)="search()">
+            <select name="status" [(ngModel)]="status" (change)="search()">
+                <option value="-1">TODOS</option>
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="RESUELTA">RESUELTA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="new-todo-link-wrap">
+        <a class="new-todo-link" routerLink="/new">Nueva tarea</a>
+    </div>
+
+    <ng-template [ngIf]="todos?.length > 0" [ngIfElse]="emptyTodosBlock">
+        <div class="table-container" role="table" aria-label="ToDos">
+            <div class="flex-table header" role="rowgroup">
+                <div class="flex-row first" role="columnheader">Id</div>
+                <div class="flex-row" role="columnheader">Descripcion</div>
+                <div class="flex-row" role="columnheader">Estado</div>
+                <div class="flex-row" role="columnheader">Imagen</div>
+                <div class="flex-row" role="columnheader">Acciones</div>
+            </div>
+
+            <div *ngFor="let todo of todos" class="flex-table row" role="rowgroup">
+                <div class="flex-row first" role="cell">{{todo.id}}</div>
+                <div class="flex-row" role="cell">{{todo.description}}</div>
+                <div class="flex-row" role="cell">{{todo.status}}</div>
+                <div class="flex-row" role="cell">
+                    <img src="{{todo.image}}" />
+                </div>
+                <div class="flex-row" role="cell">
+                    <ng-template [ngIf]="todo.status == 'PENDIENTE'" [ngIfElse]="elseBlock">
+                        <a (click)="resolve(todo.id)">
+                            <fa-icon [icon]="['fas', 'clock']"></fa-icon>
+                        </a>
+                    </ng-template>
+                    <ng-template #elseBlock>
+                        <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #emptyTodosBlock>
+        <div class="empty">
+            <h1>No hay tareas</h1>
+        </div>
+    </ng-template>
+</div>

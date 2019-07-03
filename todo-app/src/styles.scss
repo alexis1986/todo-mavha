@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+$table-header: #1976d2;
+$table-header-border: #969696;
+$table-border: #000000;
+$row-bg: #f4f2f1;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: lightblue;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+
+  .header {
+    align-self: center;
+    margin: 0.5rem;
+  }
+
+  .body {
+    display: flex;
+    & > input,
+    select {
+      flex-grow: 1;
+      margin: 0 0.1rem;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+div.empty {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.table-container {
+  display: block;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.flag-icon {
+  margin-right: 0.1em;
+}
+
+.flex-table {
+  display: flex;
+  flex-flow: row wrap;
+  border-left: solid 1px $table-border;
+  transition: 0.5s;
+  &:first-of-type {
+    border-top: solid 0.1rem $table-header-border;
+    border-left: solid 0.1rem $table-header-border;
+  }
+  &:first-of-type .flex-row {
+    background: $table-header;
+    color: #ffffff;
+    border-color: $table-header-border;
+  }
+  &.row:nth-child(odd) .flex-row {
+    background: $row-bg;
+  }
+  &:hover {
+    background: #f5e8e8;
+    transition: 500ms;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% / 5);
+  text-align: center;
+  padding: 0.5em 0.5em;
+  border-right: solid 0.1rem $table-border;
+  border-bottom: solid 0.1rem $table-border;
+}
+
+@media all and (max-width: 767px) {
+  .flex-row {
+    width: calc(100% / 4);
+
+    &.first {
+      width: 100%;
+    }
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .search {
+    .body {
+      flex-direction: column;
+
+      & > input,
+      select {
+        margin: 0.1rem;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 430px) {
+  .flex-table {
+    .flex-row {
+      border-bottom: 0;
+    }
+    .flex-row:last-of-type {
+      border-bottom: solid 1px $table-border;
+    }
+  }
+
+  .header {
+    .flex-row {
+      border-bottom: solid 1px;
+    }
+  }
+
+  .flex-row {
+    width: 100%;
+
+    &.first {
+      width: 100%;
+      border-bottom: solid 1px $table-border;
+    }
+  }
+
+  .column {
+    width: 100%;
+    .flex-row {
+      border-bottom: solid 1px $table-border;
+    }
+  }
+
+  .flex-cell {
+    width: 100%;
+  }
+}
+
+.fa-clock {
+  color: red;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.new-todo {
+  display: flex;
+  flex-direction: column;
+  background-color: $row-bg;
+
+  .form-field {
+    display: flex;
+    margin: 0.5rem;
+
+    label {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+
+    a {
+      background-color: $table-header;
+      color:white;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+
+      &:active {
+        opacity: 0.3;
+      }
+
+      &.disabled {
+        pointer-events: none;
+        cursor: default;
+        background-color: red; 
+      }
+    }
+  }
+}
+
+.new-todo-link-wrap {
+  display: flex;
+  width: 100%;
+  margin-top: 0.5rem;
+
+  .new-todo-link {
+    flex: 1;
+    background-color: $table-header;
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+  }
+}

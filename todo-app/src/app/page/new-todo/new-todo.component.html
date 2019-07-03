@@ -1,0 +1,15 @@
+<div class="container new-todo">
+    <h1>Nueva Tarea</h1>
+    <form [formGroup]="todoForm" > 
+        <div class="form-field">
+            <label for="description">Descripcion</label>
+            <input type="text" formControlName="description" required>
+        </div>
+        <div class="form-field">
+            <input type="file" name="image" (change)="onImageSelect($event)" required>
+        </div>
+        <div class="buttons">
+            <a (click)="save()" [class.disabled]="todoForm.invalid">Guardar</a>
+        </div>
+    </form>    
+</div>
